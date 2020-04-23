@@ -129,7 +129,7 @@ function MyInfoLibrary(config) {
 }
 
 /**
- * Call Token API (get access token)
+ * Get Access Token from MyInfo Token API
  * 
  * This method calls the Token API and obtain an "access token", 
  * which can be used to call the Person API for the actual data.
@@ -140,7 +140,7 @@ function MyInfoLibrary(config) {
  * @param {string} state - Identifier that represents the user's session with the client, provided earlier during the authorise API call.
  * @returns {Promise} - Returns the Access Token
  */
-MyInfoLibrary.prototype.callTokenAPI = function (authCode, state) {
+MyInfoLibrary.prototype.getAccessToken = function (authCode, state) {
   if (!isInitialized) {
     throw (constant.ERROR_UNKNOWN_NOT_INIT);
   }
@@ -149,7 +149,7 @@ MyInfoLibrary.prototype.callTokenAPI = function (authCode, state) {
 }
 
 /**
- * Call Person API (get Person Data)
+ * Get Person Data from MyInfo Person API
  * 
  * This method calls the Person API and returns a JSON response with the
  * personal data that was requested. Your application needs to provide a
@@ -161,7 +161,7 @@ MyInfoLibrary.prototype.callTokenAPI = function (authCode, state) {
  * @param {string} txnNo - Transaction ID from requesting digital services for cross referencing.
  * @returns {Promise} Returns the Person Data (Payload decrypted + Signature validated)
  */
-MyInfoLibrary.prototype.callPersonAPI = function (accessToken, txnNo) {
+MyInfoLibrary.prototype.getPersonData = function (accessToken, txnNo) {
   if (!isInitialized) {
     throw (constant.ERROR_UNKNOWN_NOT_INIT);
   }
@@ -170,7 +170,7 @@ MyInfoLibrary.prototype.callPersonAPI = function (accessToken, txnNo) {
 
 
 /**
- * Call Token API + Person API
+ * Get MyInfo Person Data (MyInfo Token + Person API)
  * 
  * This method takes in all the required variables, invoke the following APIs. 
  * - Get Access Token (Token API) - to get Access Token by using the Auth Code
@@ -181,15 +181,15 @@ MyInfoLibrary.prototype.callPersonAPI = function (accessToken, txnNo) {
  * @param {string} txnNo - Transaction ID from requesting digital services for cross referencing.
  * @returns {Promise} - Returns the Person Data (Payload decrypted + Signature validated)
  */
-MyInfoLibrary.prototype.callTokenAndPersonAPI = function (code, state, txnNo) {
+MyInfoLibrary.prototype.getMyInfoPersonData = function (code, state, txnNo) {
   if (!isInitialized) {
     throw (constant.ERROR_UNKNOWN_NOT_INIT);
   }
   // checking if the state provided is not undefined.
-  return this.callTokenAPI(code, state)
+  return this.getAccessToken(code, state)
     .then(createTokenResult => {
       let accessToken = JSON.parse(createTokenResult).access_token;
-      return this.callPersonAPI(accessToken, txnNo);
+      return this.getPersonData(accessToken, txnNo);
     })
     .catch(error => {
       return Promise.reject(error);

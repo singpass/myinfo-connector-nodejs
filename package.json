@@ -1,0 +1,29 @@
+{
+  "name": "@cheesiangcs/myinfonodejsconnector",
+  "version": "0.0.1",
+  "description": "MyInfo Library for NodeJs",
+  "main": "main.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/singpass/myinfo-connector-nodejs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sonar": "node sonar-projects.js"
+  },
+  "author": "MyInfo Team",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "log4js": "^6.2.0",
+    "node-jose": "^1.1.3",
+    "pem": "^1.14.3",
+    "querystring": "^0.2.0"
+  },
+  "devDependencies": {
+    "sonarqube-scanner": "^2.5.0"
+  }
+}

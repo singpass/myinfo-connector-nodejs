@@ -17,7 +17,7 @@ jobs:
           # scope: '@cheesiangcs'
           # registry-url: https://npm.pkg.github.com/
           # scope: '@cheesiangcs'
-      - run: npm install
+      - run: npm ci
       - run: npm publish --access public
       # - run: npm publish
         env:

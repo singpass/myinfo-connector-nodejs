@@ -24,7 +24,7 @@ MyInfo NodeJS Connector aims to simplify consumer's integration effort with MyIn
 ### 1.1. Using npm:
 
 ``` 
-$ npm install myinfolibrarynodejs 
+$ npm install myinfo-connector-nodejs 
 ```
 
 
@@ -33,11 +33,11 @@ $ npm install myinfolibrarynodejs
 ### <a name="sample"></a>2.1. Sample Code
 
 ```
-var myInfoConnector = require('myinfo-connector-nodejs'); //Call constructor to initialize library and pass in the configurations.
-let myinfoLib = new myInfoConnector(MYINFO_LIBRARY_CONFIG); // MYINFO_LIBRARY_CONFIG is the Process Environment file (in JSON format), please refer to Process Environment file in 2.2
+var MyInfoConnector = require('myinfo-connector-nodejs'); //Call constructor to initialize library and pass in the configurations.
+let connector = new MyInfoConnector(config.MYINFO_CONNECTOR_CONFIG); // MYINFO_LIBRARY_CONFIG is the Process Environment file (in JSON format), please refer to Process Environment file in 2.2
 
 /**
- * Call Token API + Person API
+ * Get MyInfo Person Data (MyInfo Token + Person API)
  * 
  * This method takes in all the required variables, invoke the following APIs. 
  * - Get Access Token (Token API) - to get Access Token by using the Auth Code
@@ -49,7 +49,7 @@ let myinfoLib = new myInfoConnector(MYINFO_LIBRARY_CONFIG); // MYINFO_LIBRARY_CO
  * @returns {Promise} - Returns the Person Data (Payload decrypted + Signature validated)
  */
 
-myinfoLib.callTokenAndPersonAPI(authCode, state, txnNo)
+connector.getMyInfoPersonData(authCode, state, txnNo)
 .then(data => {
     return data; // Person Data
 })
@@ -90,8 +90,9 @@ Under the hood, myInfoLibrary makes use of **SecurityController** and you may us
 This method takes in all the required parameters into a treemap and assemble the header.
 
 ```
-var myInfoConnector = require('myInfoConnector')
-let myinfoLib = new myInfoConnector(MYINFO_LIBRARY_CONFIG);
+var MyInfoConnector = require('myinfo-connector-nodejs');
+...
+let connector = new MyInfoConnector(config.MYINFO_CONNECTOR_CONFIG);
 ...
 ..
 .
@@ -112,7 +113,7 @@ let myinfoLib = new myInfoConnector(MYINFO_LIBRARY_CONFIG);
  * @returns {string} - Authorized Header
 */
 
-myinfoLib.generateAuthorizationHeader(url, params, method, strContentType, authType, appId, keyCertContent, privateKey);
+connector.generateAuthorizationHeader(url, params, method, strContentType, authType, appId, keyCertContent, privateKey);
 ```
 
 ### <a name="jwe"></a>3.2. Decrypt Data (JWE)
@@ -129,7 +130,7 @@ This method takes in the payload and the private key to decrypt the payload.
  * @returns {Promise} -  Decrypted data
 */
 
-myinfoLib.decryptJWE(pemPrivateKey, compactJWE);
+connector.decryptJWE(pemPrivateKey, compactJWE);
 ```
 
 ### <a name="jws"></a>3.3. Verify Signature (JWS)
@@ -148,7 +149,7 @@ This method takes in the JSON Web Signature and the public key for verification.
  * @returns {Promise} - decoded data
 */
 
-myinfoLib.verifyJWS(publicKey, compactJWS);
+connector.verifyJWS(publicKey, compactJWS);
 ```
 
 

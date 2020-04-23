@@ -1,6 +1,6 @@
 {
   "name": "@cheesiangcs/myinfonodejsconnector",
-  "version": "0.0.4",
+  "version": "0.0.1",
   "description": "MyInfo Library for NodeJs",
   "main": "main.js",
   "publishConfig": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cheesiangcs/MyInfoNodeJSConnector"
+    "url": "https://github.com/singpass/myinfo-connector-nodejs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

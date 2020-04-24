@@ -1,7 +1,7 @@
 
-# MyInfo NodeJS Connector
+# MyInfo Connector NodeJS
 
-MyInfo NodeJS Connector aims to simplify consumer's integration effort with MyInfo by providing an easy to use Javascript library to integrate into your application.
+MyInfo Connector NodeJS aims to simplify consumer's integration effort with MyInfo by providing an easy to use Javascript library to integrate into your application.
 
 
 ## Contents
@@ -34,7 +34,9 @@ $ npm install myinfo-connector-nodejs
 
 ```
 var MyInfoConnector = require('myinfo-connector-nodejs'); //Call constructor to initialize library and pass in the configurations.
-let connector = new MyInfoConnector(config.MYINFO_CONNECTOR_CONFIG); // MYINFO_LIBRARY_CONFIG is the Process Environment file (in JSON format), please refer to Process Environment file in 2.2
+
+let connector = new MyInfoConnector(config.MYINFO_CONNECTOR_CONFIG); // MYINFO_CONNECTOR_CONFIG is the Process Environment file (in JSON format), please refer to Process Environment file in 2.2
+
 
 /**
  * Get MyInfo Person Data (MyInfo Token + Person API)
@@ -61,7 +63,7 @@ connector.getMyInfoPersonData(authCode, state, txnNo)
 
     
 ### <a name="config"></a>2.2. Process Environment file
-You are required to create an environment file (in JSON format) with the following process environments for this library. You may look at the sample Process Environment file [here](https://github.com/cheesiangcs/sg-verify-demo-app-v2/blob/master/your-vms-server/config/config.js). 
+You are required to create an environment file (in JSON format) with the following process environments for this library. You may look at the sample Process Environment file [HERE](https://github.com/singpass/verify-demo-app/blob/master/your-vms-server/config/config.js). 
 
 | Required Properties | Description |
 | -------- | ----------- |
@@ -84,7 +86,7 @@ You are required to create an environment file (in JSON format) with the followi
 
 ## <a name="helper"></a>3. Individual Helper Method
 
-Under the hood, myInfoLibrary makes use of **SecurityController** and you may use the class as util methods to meet your application needs.
+Under the hood, MyInfo Connector NodeJS makes use of **SecurityController** and you may use the class as util methods to meet your application needs.
 
 ### <a name="authheader"></a>3.1. Assembling Authorization Header
 This method takes in all the required parameters into a treemap and assemble the header.

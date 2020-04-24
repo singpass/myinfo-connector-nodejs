@@ -92,12 +92,10 @@ Under the hood, MyInfo Connector NodeJS makes use of **SecurityController** and 
 This method takes in all the required parameters into a treemap and assemble the header.
 
 ```
-var MyInfoConnector = require('myinfo-connector-nodejs');
-...
-let connector = new MyInfoConnector(config.MYINFO_CONNECTOR_CONFIG);
-...
-..
-.
+var MyInfoConnector = require('myinfo-connector-nodejs'); //Call constructor to initialize library and pass in the configurations.
+
+let connector = new MyInfoConnector(config.MYINFO_CONNECTOR_CONFIG); // MYINFO_CONNECTOR_CONFIG is the Process Environment file (in JSON format), please refer to Process Environment file in 2.2
+
 /**
  * Generate Authorization Header
  * 

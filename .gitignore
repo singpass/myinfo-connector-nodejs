@@ -1,3 +1,4 @@
 node_modules
 sonar-projects.js
 .scannerwork
+package-lock.json

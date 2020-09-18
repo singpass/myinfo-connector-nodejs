@@ -7,6 +7,7 @@ MyInfo Connector NodeJS aims to simplify consumer's integration effort with MyIn
 ## Contents
 
 - [1. Installation](#installation)
+    - [1.1. Using npm](#install)
 - [2. Usage](#usage)
     - [2.1. Sample Code](#sample)
     - [2.2. Process Environment file (Config)](#config)    
@@ -21,11 +22,15 @@ MyInfo Connector NodeJS aims to simplify consumer's integration effort with MyIn
 
 ## <a name="installation"></a>1. Installation
 
-### 1.1. Using npm:
+### <a name="install"></a>1.1. Using npm:
 
 ``` 
 $ npm install myinfo-connector-nodejs 
 ```
+
+### <a name="openssl"></a>1.2 [For Windows only] - OpenSSL Installation (_skip this step if you have OpenSSL installed_)
+
+For windows user, you are required to install the OpenSSL library in your computer in order to use myinfo-connector-nodejs library. Please refer to the OpenSSL installation guide [here](https://public.cloud.myinfo.gov.sg/docs/OpenSSL_installation_guide.pdf). 
 
 
 ## <a name="usage"></a>2. Usage
@@ -86,7 +91,7 @@ You are required to create an environment file (in JSON format) with the followi
 
 ## <a name="helper"></a>3. Individual Helper Method
 
-Under the hood, MyInfo Connector NodeJS makes use of **SecurityController** and you may use the class as util methods to meet your application needs.
+Under the hood, MyInfo Connector NodeJS makes use of **SecurityHelper** and you may use the class as util methods to meet your application needs.
 
 ### <a name="authheader"></a>3.1. Assembling Authorization Header
 This method takes in all the required parameters into a treemap and assemble the header.
@@ -115,44 +120,6 @@ let connector = new MyInfoConnector(config.MYINFO_CONNECTOR_CONFIG); // MYINFO_C
 
 connector.generateAuthorizationHeader(url, params, method, strContentType, authType, appId, keyCertContent, privateKey);
 ```
-
-### <a name="jwe"></a>3.2. Decrypt Data (JWE)
-This method takes in the payload and the private key to decrypt the payload.
-```
-/**
- * Decyption JWE
- * 
- * This method takes in a JSON Web Encrypted object and will decrypt it using the
- * private key. This is required to decrypt the data from Person API
- * 
- * @param {File} pemPrivateKey - Private Key string, PEM format
- * @param {string} compactJWE - data in compact serialization format - header.encryptedKey.ivciphertext.tag
- * @returns {Promise} -  Decrypted data
-*/
-
-connector.decryptJWE(pemPrivateKey, compactJWE);
-```
-
-### <a name="jws"></a>3.3. Verify Signature (JWS)
-This method takes in the JSON Web Signature and the public key for verification.
-```
-/**
- * Verify JWS
- * 
- * This method takes in a JSON Web Signature and will check against 
- * the public key for its validity and to retrieve the decoded data.
- * This verification is required for the decoding of the access token and 
- * response from Person API
- * 
- * @param {File} publicKey - PEM file public key
- * @param {string} compactJWS - Data in JWS compact serialization Format
- * @returns {Promise} - decoded data
-*/
-
-connector.verifyJWS(publicKey, compactJWS);
-```
-
-
 
 ## Reporting Issue
 

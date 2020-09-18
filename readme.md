@@ -8,10 +8,11 @@ MyInfo Connector NodeJS aims to simplify consumer's integration effort with MyIn
 
 - [1. Installation](#installation)
     - [1.1. Using npm](#install)
+    - [1.2. OpenSSL Installation](#openssl)
 - [2. Usage](#usage)
     - [2.1. Sample Code](#sample)
     - [2.2. Process Environment file (Config)](#config)    
-- [3. Individual Helper Method](#helper)    
+- [3. Individual Helper Method](#helper)
     - [3.1. Assembling Authorization Header](#authheader)
 - [Change Logs](./CHANGELOG.md)
 

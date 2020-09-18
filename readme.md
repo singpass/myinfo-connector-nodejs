@@ -7,8 +7,6 @@ MyInfo Connector NodeJS aims to simplify consumer's integration effort with MyIn
 ## Contents
 
 - [1. Installation](#installation)
-    - [1.1. Using npm](#install)
-    - [1.2. OpenSSL Installation](#openssl)    
 - [2. Usage](#usage)
     - [2.1. Sample Code](#sample)
     - [2.2. Process Environment file (Config)](#config)    
@@ -23,15 +21,11 @@ MyInfo Connector NodeJS aims to simplify consumer's integration effort with MyIn
 
 ## <a name="installation"></a>1. Installation
 
-### <a name="install"></a>1.1. Using npm:
+### 1.1. Using npm:
 
 ``` 
 $ npm install myinfo-connector-nodejs 
 ```
-
-### <a name="openssl"></a>1.2 [For Windows only] - OpenSSL Installation (_skip this step if you have OpenSSL installed_)
-
-For windows user, you are required to install the OpenSSL library in your computer in order to use myinfo-connector-nodejs library. Please refer to the OpenSSL installation guide [here](https://public.cloud.myinfo.gov.sg/docs/OpenSSL_installation_guide.pdf). 
 
 
 ## <a name="usage"></a>2. Usage

@@ -12,8 +12,10 @@ MyInfo Connector NodeJS aims to simplify consumer's integration effort with MyIn
 - [2. Usage](#usage)
     - [2.1. Sample Code](#sample)
     - [2.2. Process Environment file (Config)](#config)    
-- [3. Individual Helper Method](#helper)
-    - [3.1. Assembling Authorization Header](#authheader)
+- [3. Individual Methods](#helper)
+    - [3.1. Get MyInfo Person Data](#getMyInfoPersonData)
+    - [3.2. Get Access Token](#getAccessToken)
+    - [3.3. Get Person Data](#getPersonData)
 - [Change Logs](./CHANGELOG.md)
 
 
@@ -88,36 +90,70 @@ You are required to create an environment file (in JSON format) with the followi
 
 
 
-## <a name="helper"></a>3. Individual Helper Method
+## <a name="helper"></a>3. Individual Method
 
 Under the hood, MyInfo Connector NodeJS makes use of **SecurityHelper** and you may use the class as util methods to meet your application needs.
 
-### <a name="authheader"></a>3.1. Assembling Authorization Header
-This method takes in all the required parameters into a treemap and assemble the header.
+### <a name="getMyInfoPersonData"></a>3.1. Get MyInfo Person Data
+This method takes in all the required parameters to get MyInfo Person Data.
 
 ```
 var MyInfoConnector = require('myinfo-connector-nodejs'); //Call constructor to initialize library and pass in the configurations.
 
 let connector = new MyInfoConnector(config.MYINFO_CONNECTOR_CONFIG); // MYINFO_CONNECTOR_CONFIG is the Process Environment file (in JSON format), please refer to Process Environment file in 2.2
 
-/**
- * Generate Authorization Header
- * 
- * This method helps to generate the authorization header and sign it 
- * using the private key. This is required to be used for both Token and Person API
- * 
- * @param {string} url - API URL
- * @param {string} params - JSON object of params sent, key/value pair.
- * @param {string} method - API method type, eg GET, POST...
- * @param {string} strContentType - Content Type of HTTPS request
- * @param {string} authType - Auth level, eg SANDBOX, TEST, PROD
- * @param {string} appId - API ClientId
- * @param {File} keyCertContent - Private Key Certificate content
- * @param {string} clientSecret - API Client Secret
- * @returns {string} - Authorized Header
-*/
+  /**
+   * Get MyInfo Person Data (MyInfo Token + Person API)
+   * 
+   * This method takes in all the required variables, invoke the following APIs. 
+   * - Get Access Token (Token API) - to get Access Token by using the Auth Code
+   * - Get Person Data (Person API) - to get Person Data by using the Access Token
+   * 
+   * @param {string} authCode - Authorization Code from Authorise API
+   * @param {string} state - Identifier that represents the user's session with the client, provided earlier during the authorise API call.
+   * @param {string} txnNo - Transaction ID from requesting digital services for cross referencing.
+   * @returns {Promise} - Returns the Person Data (Payload decrypted + Signature validated)
+   */
+  getMyInfoPersonData = function (authCode, state, txnNo)
+```
 
-connector.generateAuthorizationHeader(url, params, method, strContentType, authType, appId, keyCertContent, privateKey);
+### <a name="getAccessToken"></a>3.2. Get Access Token
+This method takes in all the authCode and state and returns the access token.
+
+```
+  /**
+   * Get Access Token from MyInfo Token API
+   * 
+   * This method calls the Token API and obtain an "access token", 
+   * which can be used to call the Person API for the actual data.
+   * Your application needs to provide a valid "authorisation code" 
+   * from the authorise API in exchange for the "access token".
+   * 
+   * @param {string} authCode - Authorization Code from Authorise API
+   * @param {string} state - Identifier that represents the user's session with the client, provided earlier during the authorise API call.
+   * @returns {Promise} - Returns the Access Token
+   */
+  getAccessToken = function (authCode, state)
+```
+
+### <a name="getPersonData"></a>3.3. Get Person Data
+This method takes in the accessToken and txnNo and returns the person data.
+
+```
+  /**
+   * Get Person Data from MyInfo Person API
+   * 
+   * This method calls the Person API and returns a JSON response with the
+   * personal data that was requested. Your application needs to provide a
+   * valid "access token" in exchange for the JSON data. Once your application
+   * receives this JSON data, you can use this data to populate the online
+   * form on your application.
+   * 
+   * @param {string} accessToken - Access token from Token API
+   * @param {string} txnNo - Transaction ID from requesting digital services for cross referencing.
+   * @returns {Promise} Returns the Person Data (Payload decrypted + Signature validated)
+   */
+  getPersonData = function (accessToken, txnNo)
 ```
 
 ## Reporting Issue

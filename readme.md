@@ -13,8 +13,6 @@ MyInfo Connector NodeJS aims to simplify consumer's integration effort with MyIn
     - [2.2. Process Environment file (Config)](#config)    
 - [3. Individual Helper Method](#helper)    
     - [3.1. Assembling Authorization Header](#authheader)
-    - [3.2. Decrypt Data (JWE)](#jwe)
-    - [3.3. Verify Signature (JWS)](#jws)
 - [Change Logs](./CHANGELOG.md)
 
 

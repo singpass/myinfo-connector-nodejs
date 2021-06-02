@@ -73,8 +73,8 @@ You are required to create an environment file (in JSON format) with the followi
 
 | Required Properties | Description |
 | -------- | ----------- |
-| CLIENT_SECURE_CERT_PASSPHRASE | Password of the private key. |
-| CLIENT_SECURE_CERT | Alias of the application private key in P12 format. |
+| CLIENT_SECURE_CERT_PASSPHRASE | Password of your private key. |
+| CLIENT_SECURE_CERT | Alias of the your application private key in P12 format. [Example](https://github.com/singpass/myinfo-demo-app/tree/master/cert)|
 | MYINFO_SIGNATURE_CERT_PUBLIC_CERT | Alias of the MyInfo public certificate in PEM format. |
 | CLIENT_ID | Unique ID provided upon approval of your application to use MyInfo. (e.g. _STG2-MYINFO-SELF-TEST_) |
 | CLIENT_SECRET | Secret key provided upon approval of your application to use MyInfo. (e.g. _44d953c796cccebcec9bdc826852857ab412fbe2_) |

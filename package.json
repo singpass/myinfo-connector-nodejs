@@ -24,6 +24,6 @@
     "pem": "^1.14.4"
   },
   "devDependencies": {
-    "sonarqube-scanner": "^2.5.0"
+    "sonarqube-scanner": "^2.8.0"
   }
 }

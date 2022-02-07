@@ -1,6 +1,8 @@
 
 # MyInfo Connector NodeJS
 
+[![Known Vulnerabilities](https://snyk.io/test/github/singpass/myinfo-connector-nodejs/badge.svg)](https://snyk.io/test/github/singpass/myinfo-connector-nodejs)
+
 MyInfo Connector NodeJS aims to simplify consumer's integration effort with MyInfo by providing an easy to use Javascript library to integrate into your application.
 
 

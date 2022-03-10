@@ -18,7 +18,7 @@ logger.level = CONFIG.DEBUG_LEVEL;
  * This is a constructor to validate and initialize all the config variables
  * 
  * @param {{MYINFO_SIGNATURE_CERT_PUBLIC_CERT : string, 
- * CLIENT_SECURE_CERT_PATH: string, 
+ * CLIENT_SECURE_CERT: string, 
  * CLIENT_SECURE_CERT_PASSPHRASE : string, 
  * READ_SECURE_CERT : async function,
  * CLIENT_ID: string,
@@ -75,10 +75,10 @@ class MyInfoConnector {
     } else {
       CONFIG.REDIRECT_URL = config.REDIRECT_URL;
     }
-    if (!config.CLIENT_SECURE_CERT_PATH) {
+    if (!config.CLIENT_SECURE_CERT) {
       throw (constant.ERROR_CONFIGURATION_CLIENT_SECURE_CERT_NOT_FOUND);
     } else {
-      CONFIG.CLIENT_SECURE_CERT_PATH = config.CLIENT_SECURE_CERT_PATH;
+      CONFIG.CLIENT_SECURE_CERT = config.CLIENT_SECURE_CERT;
     }
     if (!config.CLIENT_SECURE_CERT_PASSPHRASE) {
       throw (constant.ERROR_CONFIGURATION_CLIENT_SECURE_CERT_PASSPHRASE_NOT_FOUND);
@@ -168,12 +168,12 @@ class MyInfoConnector {
     }
     return new Promise((resolve, reject) => {
       this.securityHelper.decryptPrivateKey(
-        CONFIG.CLIENT_SECURE_CERT_PATH,
+        CONFIG.CLIENT_SECURE_CERT,
         CONFIG.CLIENT_SECURE_CERT_PASSPHRASE,
         CONFIG.READ_SECURE_CERT
       )
         .then(result => {
-          logger.debug('Client Private Key Path: ', CONFIG.CLIENT_SECURE_CERT_PATH);
+          logger.debug('Client Private Key: ', CONFIG.CLIENT_SECURE_CERT);
           let certificate = result;
           let privateKey = (certificate.key);
           return this.#callTokenAPI(authCode, privateKey, state);
@@ -209,12 +209,12 @@ class MyInfoConnector {
     }
     return new Promise((resolve, reject) => {
       this.securityHelper.decryptPrivateKey(
-        CONFIG.CLIENT_SECURE_CERT_PATH,
+        CONFIG.CLIENT_SECURE_CERT,
         CONFIG.CLIENT_SECURE_CERT_PASSPHRASE,
         CONFIG.READ_SECURE_CERT
       )
         .then(result => {
-          logger.debug('Client Private Key Path: ', CONFIG.CLIENT_SECURE_CERT_PATH);
+          logger.debug('Client Private Key: ', CONFIG.CLIENT_SECURE_CERT);
           let privateKey = (result.key);
           return this.#getPersonDataWithKey(accessToken, txnNo, privateKey);
         })

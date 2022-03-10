@@ -1,5 +1,5 @@
 {
-  "name": "myinfo-connector-nodejs",
+  "name": "@thchia/myinfo-connector-nodejs",
   "version": "0.0.10",
   "description": "MyInfo Library for NodeJs",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/singpass/myinfo-connector-nodejs"
+    "url": "https://github.com/thchia/myinfo-connector-nodejs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

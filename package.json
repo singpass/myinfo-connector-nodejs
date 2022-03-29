@@ -1,6 +1,6 @@
 {
   "name": "myinfo-connector-nodejs",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "MyInfo Library for NodeJs",
   "main": "index.js",
   "publishConfig": {
